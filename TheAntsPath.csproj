@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AniPath\Scripts\LineRendererEx.cs" />
     <Compile Include="Assets\AniPath\Scripts\LinkLine.cs" />
     <Compile Include="Assets\AniPath\Scripts\LinkLineMgr.cs" />
     <Compile Include="Assets\AniPath\Scripts\OperatorBase.cs" />
