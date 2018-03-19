@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// 基类运算
+/// </summary>
 public class OperatorBase : MonoBehaviour {
 	public float[] m_inputDefaultValue;
 	public string m_funcPattern;
@@ -23,7 +26,6 @@ public class OperatorBase : MonoBehaviour {
 
 	void Awake()
 	{
-		Debug.Log("OperatorBase.Awake");
 		SetInputCount();
 	}
 

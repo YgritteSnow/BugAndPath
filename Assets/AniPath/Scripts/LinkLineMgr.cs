@@ -97,20 +97,56 @@ public class LinkLineMgr : MonoBehaviour {
 	{
 		if(!m_matchingObj.isInput ^ dst.isInput)
 		{
-			Debug.Log("input is same");
+			Debug.Log("input is same!");
 			return false;
 		}
 
 		if(IsCauseCicle(dst))
 		{
+			Debug.Log("cause circle!");
 			return false;
 		}
 
 		return true;
 	}
-	// 检查是否会造成循环 todo
+
+	// 检查是否会造成循环
 	public bool IsCauseCicle(LinkNodeData node)
 	{
+		if(node.obj == m_matchingObj.obj)
+		{
+			return true;
+		}
+
+		Dictionary<OperatorLink, bool> checked_pool = new Dictionary<OperatorLink, bool>();
+		checked_pool[node.obj] = true;
+		checked_pool[m_matchingObj.obj] = true;
+
+		OperatorLink input_node = node.isInput ? node.obj : m_matchingObj.obj;
+		OperatorLink output_node = node.isInput ? m_matchingObj.obj : node.obj;
+
+		Stack<OperatorLink> to_check_stack = new Stack<OperatorLink>();
+		to_check_stack.Push(output_node);
+		while (to_check_stack.Count != 0)
+		{
+			OperatorLink cur_link = to_check_stack.Pop();
+			foreach (OperatorLink child_link in cur_link.m_inputOperators)
+			{
+				if (child_link != null)
+				{
+					if (child_link == input_node)
+					{
+						return true;
+					}
+					if (!checked_pool.ContainsKey(child_link))
+					{
+						checked_pool[child_link] = true;
+						to_check_stack.Push(child_link);
+					}
+				}
+			}
+		}
+
 		return false;
 	}
 	

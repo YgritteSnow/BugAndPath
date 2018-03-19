@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 输出结果型运算
+/// 触发型运算
 /// </summary>
-public class OperatorResult : OperatorBase
-{
+public class OperatorTrigger : OperatorBase {
+
 	public override string GenStr(string[] src_names)
 	{
 		string result = "";

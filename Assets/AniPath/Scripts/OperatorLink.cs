@@ -16,7 +16,6 @@ public class OperatorLink : MonoBehaviour {
 	private void Awake()
 	{
 		m_oper = GetComponent<OperatorBase>();
-		Debug.Log("OperatorLink.Awake" + m_oper.inputCount);
 
 		m_inputOperators = new OperatorLink[m_oper.inputCount];
 		m_outputOperators = new List<OperatorLink>();

@@ -43,7 +43,6 @@ public class AntMove : MonoBehaviour {
 	{
 		_instance = this;
 		L = new LuaState();
-		ResetFunc();
 	}
 
 	public void ResetFunc()
