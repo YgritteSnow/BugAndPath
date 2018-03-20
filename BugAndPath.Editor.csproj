@@ -216,6 +216,7 @@
     <Compile Include="Assets\SLua\Slua\Editor\ModuleSelector.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\AniPath\Models\DrawPathToTex.shader" />
     <None Include="Assets\AniPath\UIPrefab\follow_path.shader" />
     <None Include="Assets\NGUI\ReadMe - 3.10.2.txt" />
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (TextureClip).shader" />

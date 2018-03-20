@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class DrawLines : MonoBehaviour
 {
-	string propertyName = "_Blend_Texture";
+	string propertyName = "_MainTex";
 	public Texture2D brushTexture;
 
 	public int width = 512;
 	public int height = 512;
 
-	Material mat;
-	Texture2D maskTexture;
+	public Material mat;
+	public Texture2D maskTexture;
 	
-	public int brushWidth;
-	public int brushHeight;
+	int brushWidth;
+	int brushHeight;
 	int lastCenterX = -1;
 	int lastCenterY = -1;
 
@@ -31,6 +31,9 @@ public class DrawLines : MonoBehaviour
 		maskTexture = new Texture2D(width, height, TextureFormat.Alpha8, false);
 		maskTexture.wrapMode = TextureWrapMode.Clamp;
 		mat.SetTexture(propertyName, maskTexture);
+
+		brushWidth = brushTexture.width;
+		brushHeight = brushTexture.height;
 
 		ClearDraw();
 	}
@@ -67,8 +70,23 @@ public class DrawLines : MonoBehaviour
 
 	public void DrawDot(Vector3 new_pos)
 	{
-		Color[] colors = brushTexture.GetPixels();
-		maskTexture.SetPixels((int)new_pos.x - brushWidth / 2, (int)new_pos.y - brushHeight / 2, brushWidth, brushHeight, colors);
+		int mask_left = (int)new_pos.x - brushWidth / 2;
+		int mask_top = (int)new_pos.y - brushHeight / 2;
+		int mask_right = mask_left + brushWidth;
+		int mask_bottom = mask_top + brushHeight;
+		int clipped_mask_left = Mathf.Max(0, Mathf.Min(width, mask_left));
+		int clipped_mask_top = Mathf.Max(0, Mathf.Min(height, mask_top));
+		int clipped_mask_right = Mathf.Max(0, Mathf.Min(width, mask_right));
+		int clipped_mask_bottom = Mathf.Max(0, Mathf.Min(height, mask_bottom));
+		if(clipped_mask_left == clipped_mask_right || clipped_mask_bottom == clipped_mask_top)
+		{
+			return;
+		}
+		Color[] colors = brushTexture.GetPixels(clipped_mask_left - mask_left, clipped_mask_top - mask_top
+			, clipped_mask_right - clipped_mask_left, clipped_mask_bottom - clipped_mask_top);
+		maskTexture.SetPixels(clipped_mask_left, clipped_mask_top
+			, clipped_mask_right - clipped_mask_left, clipped_mask_bottom - clipped_mask_top, colors);
+		maskTexture.Apply();
 	}
 
 	public void DrawLine(Vector3 new_pos)

@@ -81,6 +81,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AniPath\Scripts\AntMove.cs" />
+    <Compile Include="Assets\AniPath\Scripts\DrawLines.cs" />
+    <Compile Include="Assets\AniPath\Scripts\FollowDrawTarget.cs" />
     <Compile Include="Assets\AniPath\Scripts\LineRendererEx.cs" />
     <Compile Include="Assets\AniPath\Scripts\LinkLine.cs" />
     <Compile Include="Assets\AniPath\Scripts\LinkLineMgr.cs" />
@@ -89,9 +92,6 @@
     <Compile Include="Assets\AniPath\Scripts\OperatorLink.cs" />
     <Compile Include="Assets\AniPath\Scripts\OperatorResult.cs" />
     <Compile Include="Assets\AniPath\Scripts\OperatorTrigger.cs" />
-    <Compile Include="Assets\AntMove.cs" />
-    <Compile Include="Assets\FollowDrawObj.cs" />
-    <Compile Include="Assets\InputBase.cs" />
     <Compile Include="Assets\NGUI\Scripts\Interaction\EnvelopContent.cs" />
     <Compile Include="Assets\NGUI\Scripts\Interaction\LanguageSelection.cs" />
     <Compile Include="Assets\NGUI\Scripts\Interaction\TypewriterEffect.cs" />
@@ -1028,6 +1028,7 @@
     <Compile Include="Assets\SLua\Slua\example\test\test.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\AniPath\Models\DrawPathToTex.shader" />
     <None Include="Assets\AniPath\UIPrefab\follow_path.shader" />
     <None Include="Assets\NGUI\ReadMe - 3.10.2.txt" />
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (TextureClip).shader" />
